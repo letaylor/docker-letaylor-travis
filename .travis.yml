@@ -1,0 +1,18 @@
+os:
+  - linux
+language: generic
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+      - export IMAGE_NAME="sc_qc_norm"
+      - cd images/${IMAGE_NAME}
+      - docker build -f Dockerfile --tag staged/${IMAGE_NAME} .
+      - docker images
+      - docker tag staged/${IMAGE_NAME} ${DOCKER_USERNAME}/${IMAGE_NAME}
+      - docker push ${DOCKER_USERNAME}/${IMAGE_NAME}
