@@ -28,7 +28,8 @@ RUN apt-get update && \
         curl \
         git \
         zip \
-        unzip && \
+        unzip \
+        procps && \
     apt-get install --yes \
         libpng-dev \
         libcurl4-gnutls-dev \
