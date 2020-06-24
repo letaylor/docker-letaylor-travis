@@ -32,7 +32,6 @@ RUN apt-get update && \
     apt-get install --yes \
         libpng-dev \
         libcurl4-openssl-dev \
-        libcurl4-gnutls-dev \
         libssl-dev \
         libxml2-dev \
         libgit2-dev \
