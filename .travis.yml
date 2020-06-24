@@ -14,5 +14,5 @@ jobs:
       - cd images/${IMAGE_NAME}
       - docker build -f Dockerfile --tag staged/${IMAGE_NAME} .
       - docker images
-      - docker tag staged/${IMAGE_NAME} ${DOCKER_USERNAME}/${IMAGE_NAME}
+      - docker tag staged/${IMAGE_NAME} ${DOCKER_USERNAME}/${IMAGE_NAME}:0.0.1
       - docker push ${DOCKER_USERNAME}/${IMAGE_NAME}
