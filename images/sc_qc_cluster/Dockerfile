@@ -58,6 +58,10 @@ ENV PATH ${HOME}/bin:$PATH
 
 
 ############################ Setup: R packages #################################
+# make sure HOME files are owned by user
+RUN chown -R ${NB_USER}:${NB_USER} ${HOME}
+USER ${NB_USER}
+
 RUN mkdir ${HOME}/tmp/renv && \
     echo 'source("renv/activate.R")' > ${HOME}/tmp/run.R && \
     echo 'renv::restore()' >> ${HOME}/tmp/run.R
