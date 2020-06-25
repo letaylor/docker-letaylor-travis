@@ -57,6 +57,19 @@ ENV PATH ${HOME}/bin:$PATH
 ################################################################################
 
 
+############################ Setup: R packages #################################
+RUN mkdir ${HOME}/tmp/renv && \
+    echo 'source("renv/activate.R")' > ${HOME}/tmp/run.R && \
+    echo 'renv::restore()' >> ${HOME}/tmp/run.R
+
+# copy renv information from local directory
+COPY renv.lock ${HOME}/tmp/renv.lock
+COPY renv/activate.R ${HOME}/tmp/renv/activate.R
+
+RUN Rscript ${HOME}/tmp/run.R
+################################################################################
+
+
 ############################ Setup: conda ######################################
 # install conda
 USER root
@@ -112,19 +125,6 @@ RUN conda config --set always_yes yes --set changeps1 no && \
 # ENV PATH ${HOME}/conda/envs/container_env/bin:$PATH
 # ENV CONDA_DEFAULT_ENV container_env
 # ENV CONDA_PREFIX ${HOME}/conda/envs/container_env
-################################################################################
-
-
-############################ Setup: R packages #################################
-RUN mkdir ${HOME}/tmp/renv && \
-    echo 'source("renv/activate.R")' > ${HOME}/tmp/run.R && \
-    echo 'renv::restore()' >> ${HOME}/tmp/run.R
-
-# copy renv information from local directory
-COPY renv.lock ${HOME}/tmp/renv.lock
-COPY renv/activate.R ${HOME}/tmp/renv/activate.R
-
-RUN Rscript ${HOME}/tmp/run.R
 ################################################################################
 
 
