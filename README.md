@@ -10,7 +10,7 @@ This repo contains Docker images that are automatically built using Travis CI. I
 Edit the following files:
 * `.travis.yml` : alter `$IMAGE_NAME`.
 
-## 2. Give Travis CI access to upload to Docer Hub
+## 2. Give Travis CI access to upload to Docker Hub
 
 Store both `$DOCKER_PASSWORD` and `$DOCKER_USERNAME` securely in on Travis CI. These are used for authentication.
 
